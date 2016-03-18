@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, easygui
 import constants
 from bullet import Bullet
 
@@ -51,6 +51,7 @@ class Tank1(Tank):
 			self.image = pygame.image.load("resources/tank1.png")
 			self.image = pygame.transform.scale2x(self.image)
 		except pygame.error():
+			easygui.msgbox("tank1.png does not exist.")
 			pygame.quit()
 			sys.exit()
 		self.images = {"u":self.image, "d":pygame.transform.flip(self.image, False, True), "l":pygame.transform.rotate(self.image, 90), "r":pygame.transform.rotate(self.image, -90)}
@@ -70,6 +71,7 @@ class Tank2(Tank):
 			self.image = pygame.image.load("resources/tank2.png")
 			self.image = pygame.transform.scale2x(self.image)
 		except pygame.error():
+			easygui.msgbox("tank2.png does not exist.")
 			pygame.quit()
 			sys.exit()
 		self.images = {"u":self.image, "d":pygame.transform.flip(self.image, False, True), "l":pygame.transform.rotate(self.image, 90), "r":pygame.transform.rotate(self.image, -90)}

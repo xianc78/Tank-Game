@@ -4,9 +4,9 @@ w.wwwwwwwwwwwwwwww.w
 w.w..............w.w
 w.w...wwwwwwwww..w.w
 w.....w.......w..w.w
-w.w...w.......w..w.w
+w.....w.......w..w.w
 w.w...........w..w.w
-w.w...w.......w..w.w
+w.w...w.......w....w
 w.w...w.......w....w
 w.w...wwwwwwwww..w.w
 w.w..............w.w

@@ -1,8 +1,11 @@
 import pygame, sys, os, time, easygui
-import constants
+import constants, textfunctions
 from wall import Wall
 from map import Map
 pygame.init()
+
+titleText = textfunctions.centerText("Tank Game")
+scoreText = textfunctions.ScoreText()
 
 class Game:
 	def __init__(self, mode):
@@ -67,6 +70,7 @@ class Game:
 		#self.screen.fill(constants.BLACK)
 		if self.mode == "menu":
 			self.screen.fill(constants.RED)
+			self.screen.blit(titleText.text, titleText.rect)
 		elif self.mode == "game":
 			self.screen.fill(constants.BLACK)
 			self.screen.blit(self.map.tank1.image, self.map.tank1.rect.topleft)
@@ -75,17 +79,18 @@ class Game:
 				self.screen.blit(bullet.image, bullet.rect.topleft)
 			for wall in self.map.wall_list:
 				self.screen.blit(wall.image, wall.rect.topleft)
+			self.screen.blit(scoreText.text, scoreText.rect)
 		pygame.display.update()
 	
 	def run_logic(self):
 		if self.mode == "menu":
 			pass
 		elif self.mode == "game":
-			pygame.display.set_caption("Tank Game " + str(self.map.tank1.score) + "|" + str(self.map.tank2.score) + "|" + str(self.time))
 			self.map.tank1.update()
 			self.map.tank2.update()
 			for bullet in self.map.bullet_list:
 				bullet.update()
+			scoreText.update(self.map.tank1.score, self.map.tank2.score, self.time)
 				
 	def update_timer(self):
 		if time.time() >= self.start_time + 1:
