@@ -29,4 +29,10 @@ class ScoreText:
 		self.rect.y = 0
 		
 	def update(self, score1, score2, time):
-		self.text = fontObj.render("Tank 1 Score: " + str(score1) + " | Tank 2 Score: " + str(score2) + " | Time: " + str(time), True, constants.WHITE, constants.BLACK)
+		#self.text = fontObj.render("Tank 1 Score: " + str(score1) + " | Tank 2 Score: " + str(score2) + " | Time: " + str(time), True, constants.WHITE, constants.BLACK)
+		self.text = fontObj.render("Score: " +  str(score1) + "-" + str(score2) + " Time: " + str(time), True, constants.WHITE, constants.BLACK)
+
+def splashText(text):
+	screen = pygame.display.get_surface()
+	displayText = centerText(text)
+	screen.blit(displayText.text, displayText.rect)

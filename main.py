@@ -4,7 +4,7 @@ from game import Game
 pygame.init()
 
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
-pygame.display.set_caption("Tank Game")
+pygame.display.set_caption(constants.TITLE)
 
 game = Game("menu")
 clock = pygame.time.Clock()

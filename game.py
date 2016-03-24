@@ -4,7 +4,7 @@ from wall import Wall
 from map import Map
 pygame.init()
 
-titleText = textfunctions.centerText("Tank Game")
+titleText = textfunctions.centerText(constants.TITLE)
 scoreText = textfunctions.ScoreText()
 
 class Game:
@@ -24,7 +24,7 @@ class Game:
 						map = easygui.fileopenbox("Open File", "Tank Game", "resources/map1.txt")
 						self.map = Map(map)
 						self.mode = "game"
-					except ValueError:
+					except IOError:
 						pass
 		elif self.mode == "game":
 			for event in pygame.event.get():
@@ -72,7 +72,7 @@ class Game:
 			self.screen.fill(constants.RED)
 			self.screen.blit(titleText.text, titleText.rect)
 		elif self.mode == "game":
-			self.screen.fill(constants.BLACK)
+			self.screen.fill(constants.GREY)
 			self.screen.blit(self.map.tank1.image, self.map.tank1.rect.topleft)
 			self.screen.blit(self.map.tank2.image, self.map.tank2.rect.topleft)
 			for bullet in self.map.bullet_list:
@@ -98,11 +98,20 @@ class Game:
 			self.time -= 1
 		if self.time <= 0:
 			if self.map.tank1.score > self.map.tank2.score:
-				easygui.msgbox("Tank 1 Wins")
+				#easygui.msgbox("Tank 1 Wins")
+				textfunctions.splashText("Tank 1 Wins")
+				pygame.display.update()
+				pygame.time.wait(1000)
 			elif self.map.tank2.score > self.map.tank1.score:
-				easygui.msgbox("Tank 2 Wins")
+				#easygui.msgbox("Tank 2 Wins")
+				textfunctions.splashText("Tank 2 Wins")
+				pygame.display.update()
+				pygame.time.wait(1000)
 			else:
-				easygui.msgbox("Tie")
+				#easygui.msgbox("Tie")
+				textfunctions.splashText("Tie")
+				pygame.display.update()
+				pygame.time.wait(1000)
 			self.map.tank1.score = self.map.tank2.score = 0
 			self.__init__("menu")
 		
