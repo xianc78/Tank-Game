@@ -75,6 +75,8 @@ class Game:
 			self.screen.fill(constants.GREY)
 			self.screen.blit(self.map.tank1.image, self.map.tank1.rect.topleft)
 			self.screen.blit(self.map.tank2.image, self.map.tank2.rect.topleft)
+			for explosion in self.map.explosion_list:
+				self.screen.blit(explosion.image, (explosion.rect.x, explosion.rect.y))
 			for bullet in self.map.bullet_list:
 				self.screen.blit(bullet.image, bullet.rect.topleft)
 			for wall in self.map.wall_list:
@@ -90,6 +92,8 @@ class Game:
 			self.map.tank2.update()
 			for bullet in self.map.bullet_list:
 				bullet.update()
+			for explosion in self.map.explosion_list:
+				explosion.update()
 			scoreText.update(self.map.tank1.score, self.map.tank2.score, self.time)
 				
 	def update_timer(self):

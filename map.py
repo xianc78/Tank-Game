@@ -12,6 +12,7 @@ class Map:
 	def create_map(self):
 		self.wall_list = []
 		self.bullet_list = []
+		self.explosion_list = []
 		x = y = 0
 		for row in self.layout:
 			for tile in row:

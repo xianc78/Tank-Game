@@ -1,6 +1,7 @@
 import pygame, sys, easygui
 import constants
 from bullet import Bullet
+from explosion import Explosion
 
 explosionSound = pygame.mixer.Sound("resources/explosion.wav")
 
@@ -33,7 +34,8 @@ class Tank():
 		for bullet in self.map.bullet_list:
 			if self.rect.colliderect(bullet.rect):
 				if bullet.tank != self:
-					explosionSound.play()
+					#explosionSound.play()
+					self.map.explosion_list.append(Explosion(self.rect.centerx, self.rect.centery, self.map))
 					bullet.tank.score += 1
 					self.rect.topleft = (self.startx, self.starty)
 					self.map.bullet_list.remove(bullet)
