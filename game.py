@@ -12,7 +12,7 @@ class Game:
 		self.screen = pygame.display.get_surface()
 		self.mode = mode
 		self.start_time = time.time()
-		self.time = 60
+		self.time = 90
 	
 	def check_events(self):
 		if self.mode == "menu":
