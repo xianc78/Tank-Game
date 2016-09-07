@@ -2,6 +2,7 @@ import pygame, sys, os, time, easygui
 import constants, textfunctions
 from wall import Wall
 from map import Map
+from button import *
 pygame.init()
 
 titleText = textfunctions.centerText(constants.TITLE)
@@ -33,8 +34,12 @@ class Game:
 				elif event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_LCTRL:
 						self.map.tank1.shoot()
+					elif event.key == pygame.K_LSHIFT:
+						self.map.tank1.lay_mine()
 					elif event.key == pygame.K_RCTRL:
 						self.map.tank2.shoot()
+					elif event.key == pygame.K_RSHIFT:
+						self.map.tank2.lay_mine()
 				
 			self.map.tank1.change_x = self.map.tank1.change_y = 0
 			self.map.tank2.change_x = self.map.tank2.change_y = 0
@@ -79,6 +84,8 @@ class Game:
 				self.screen.blit(explosion.image, (explosion.rect.x, explosion.rect.y))
 			for bullet in self.map.bullet_list:
 				self.screen.blit(bullet.image, bullet.rect.topleft)
+			for mine in self.map.mine_list:
+				self.screen.blit(mine.image, mine.rect.topleft)
 			for wall in self.map.wall_list:
 				self.screen.blit(wall.image, wall.rect.topleft)
 			self.screen.blit(scoreText.text, scoreText.rect)

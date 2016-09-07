@@ -13,6 +13,7 @@ class Map:
 		self.wall_list = []
 		self.bullet_list = []
 		self.explosion_list = []
+		self.mine_list = []
 		x = y = 0
 		for row in self.layout:
 			for tile in row:

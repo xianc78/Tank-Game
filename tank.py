@@ -2,6 +2,7 @@ import pygame, sys, easygui
 import constants
 from bullet import Bullet
 from explosion import Explosion
+from mine import Mine
 
 explosionSound = pygame.mixer.Sound("resources/explosion.wav")
 
@@ -39,6 +40,13 @@ class Tank():
 					bullet.tank.score += 1
 					self.rect.topleft = (self.startx, self.starty)
 					self.map.bullet_list.remove(bullet)
+		for mine in self.map.mine_list:
+			if self.rect.colliderect(mine.rect):
+				if mine.tank != self:
+					self.map.explosion_list.append(Explosion(self.rect.centerx, self.rect.centery, self.map))
+					mine.tank.score += 1
+					self.rect.topleft = (self.startx, self.starty)
+					self.map.mine_list.remove(mine)
 		
 	def shoot(self):
 		if self.facing == "u":
@@ -49,6 +57,9 @@ class Tank():
 			self.map.bullet_list.append(Bullet(self.rect.left - 10, self.rect.centery, -6, 0, self))
 		elif self.facing == "r":
 			self.map.bullet_list.append(Bullet(self.rect.right, self.rect.centery, 6, 0, self))
+			
+	def lay_mine(self):
+		self.map.mine_list.append(Mine(self.rect.x, self.rect.y, self))
 
 class Tank1(Tank):
 	def __init__(self, x, y, map):

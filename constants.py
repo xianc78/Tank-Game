@@ -3,6 +3,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREY = (128, 128, 128) # Alright. Is it spelled as gray or grey?
+BLUE = (0, 0, 255)
 
 # SCREEN_SIZES
 SCREEN_WIDTH = 640
